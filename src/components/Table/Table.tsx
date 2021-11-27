@@ -19,7 +19,7 @@ export const Table = () => {
     const [text,setText] = useState('')
     const [state,setState] = useState<ColumnType[]>( [])
     const [currentPage,setCurrentPage] = useState(1)
-    const [rowPerPage] = useState(10)
+    const [rowPerPage] = useState(50)
 
     useEffect(()=>{
         function makeString() {
