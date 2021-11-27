@@ -4,14 +4,17 @@
 .table {
   @include flex(unset, center, column);
   min-height: 660px;
+
   h1 {
-    @include text($titleFontFamily, 26px, 1,$titleTextColor);
+    @include text($titleFontFamily, 26px, 1, $titleTextColor);
     font-weight: 700;
     align-self: flex-start;
     margin-left: 23px;
   }
-  .inputWrap{
+
+  .inputWrap {
     position: relative;
+
     input {
       margin: 20px 0;
       padding-left: 40px;
@@ -20,7 +23,7 @@
       border-radius: 15px;
       height: 45px;
       width: 877px;
-      background: no-repeat 4px 7px ;
+      background: no-repeat 4px 7px;
       background-size: 30px;
       font-size: 14px;
 
@@ -38,4 +41,3 @@
     }
   }
 }
-

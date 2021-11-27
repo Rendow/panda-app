@@ -12,9 +12,9 @@ export const FilterBar = React.memo(({setType,sortDirection,setSortDirection}:Fi
     return (
         <div className={s.filterBar}>
             <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={32} type={'title'} name={'title'}  setType={setType} />
-            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52} type={'columnOne'} name={'Column'} setType={setType} />
-            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52} type={'columnTwo'}  name={'Column'} setType={setType} />
-            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52}  type={'columnTree'} name={'Column'}  setType={setType} />
+            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52} type={'columnOne'} name={'column'} setType={setType} />
+            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52} type={'columnTwo'}  name={'column'} setType={setType} />
+            <FilterButton sortDirection={sortDirection} setSortDirection={setSortDirection} left={52}  type={'columnTree'} name={'column'}  setType={setType} />
         </div>
     )
 })

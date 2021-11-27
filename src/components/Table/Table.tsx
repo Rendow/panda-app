@@ -2,8 +2,9 @@ import s from './Table.module.scss'
 import {useEffect, useState} from "react";
 import searchIcon from "../../common/img/search.png";
 import React from 'react';
-import { Column } from '../Column/Column';
+import { Row } from '../Row/Row';
 import { FilterBar } from '../FilterBar/FilterBar';
+import { Pagination } from '../Pagination/Pagination';
 
 export type ColumnType = {
         columnOne: number
@@ -17,6 +18,8 @@ export const Table = () => {
     const [sortDirection,setSortDirection] = useState(false)
     const [text,setText] = useState('')
     const [state,setState] = useState<ColumnType[]>( [])
+    const [currentPage,setCurrentPage] = useState(1)
+    const [rowPerPage] = useState(10)
 
     useEffect(()=>{
         function makeString() {
@@ -70,7 +73,6 @@ export const Table = () => {
         }
     }
 
-
     const sortTestsByType = function (type:string){
         let sortedState = [] as ColumnType[]
         switch (type) {
@@ -108,10 +110,15 @@ export const Table = () => {
 
     }
 
-    let search = state.filter(t => {
+
+
+    const lastRowIndex = currentPage * rowPerPage
+    const firstRowIndex = lastRowIndex - rowPerPage
+    const currentState = state.slice(firstRowIndex,lastRowIndex)
+
+    const search = currentState.filter(t => {
         return [text].every(el => t.title.toLowerCase().includes(el))
     })
-
     return (
       <main className={s.table}>
         <h1>Table </h1>
@@ -123,12 +130,13 @@ export const Table = () => {
               onChange={(e)=>{setText(e.currentTarget.value)}}
               type="text" />
         </div>
-          <FilterBar sortDirection={sortDirection} setSortDirection={setSortDirection} setType={sortTestsByType} />
+          <FilterBar sortDirection={sortDirection}
+                     setSortDirection={setSortDirection}
+                     setType={sortTestsByType} />
           <ul>
                   { search.map( i => {
                       return <li key={i.id}>
-                          <Column
-                                  title={i.title}
+                          <Row    title={i.title}
                                   columnOne={i.columnOne}
                                   columnTwo={i.columnTwo}
                                   columnTree={i.columnTree}
@@ -136,8 +144,10 @@ export const Table = () => {
                       </li>
                   })}
       </ul>
+          <Pagination currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
+                      rowPerPage={rowPerPage}
+                      totalRow={state.length} />
       </main>
   )
 }
-
-
